@@ -1,3 +1,17 @@
+:root {
+  --bg: #161f27;
+  --panel: #e8e9f3;
+  --text: #777da7;
+  --accent: #d5573b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
+  background-color: var(--bg);
   text-align: center;
 }

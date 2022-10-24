@@ -1,0 +1,33 @@
+.headerWrapper {
+  background-color: var(--panel);
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.headerTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 8vh;
+}
+
+.headerStation {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--accent);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 8vh;
+}
+
+.headerStation img {
+  height: 1em;
+  padding-right: 0.3em;
+}
