@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
+import Footer from "./components/Footer";
 
 function App() {
   var stationName = "Universität";
@@ -56,7 +57,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchDepartures();
+    // fetchDepartures();
   }, []);
 
   return (
@@ -65,6 +66,7 @@ function App() {
       {departures.map((departure, i) => (
         <DepartCard departures={departure} key={i} />
       ))}
+      <Footer />
     </div>
   );
 }
