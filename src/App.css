@@ -14,4 +14,5 @@
 .App {
   background-color: var(--bg);
   text-align: center;
+  height: 100vh;
 }
