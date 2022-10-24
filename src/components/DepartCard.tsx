@@ -1,14 +1,19 @@
 import React from "react";
 import "./DepartCard.css";
 
-export default function DepartCard() {
+export default function DepartCard({ departures }: any) {
   return (
     <div className="DCWrapper">
-      <div className="DCLine" style={{ backgroundColor: "#0472b3" }}>
-        U6 Garching, Forschungszentrum
+      <div
+        className="DCLine"
+        style={{ backgroundColor: departures.lineBackgroundColor }}
+      >
+        {departures.label}
+        {" - "}
+        {departures.destination}
       </div>
       <div className="DCTime">
-        in <a>12</a> min
+        in <a>{departures.departureTime + departures.delay}</a> min
       </div>
     </div>
   );
