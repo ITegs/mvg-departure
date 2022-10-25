@@ -16,3 +16,21 @@
   text-align: center;
   min-height: 100vh;
 }
+
+@keyframes slidein {
+  from {
+    left: -100%;
+  }
+}
+
+.StationSelector {
+  animation: slidein 0.5s;
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.departures {
+  transition: all 1s ease;
+}

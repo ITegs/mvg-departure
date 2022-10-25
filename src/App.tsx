@@ -5,11 +5,13 @@ import "./App.css";
 import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
 import Footer from "./components/Footer";
+import StationSelector from "./components/StationSelector";
 
 function App() {
-  var stationName = "Universität";
-  var StationID = "de:09162:70"; // Universität
-  // var StationID = "de:09162:2"; // Marienplatz
+  const [showSelector, setShowSelector] = useState(false);
+
+  const [stationID, setStationID] = useState<string>("de:09162:70"); // Universität
+  const [stationName, setStationName] = useState<string>("Universität");
 
   const epochToRemainingTime = (epoch: number) => {
     const now = new Date();
@@ -21,8 +23,8 @@ function App() {
 
   const [departures, setDepartures] = useState([]);
 
-  const fetchDepartures = async () => {
-    await fetch("https://www.mvg.de/api/fahrinfo/departure/" + StationID)
+  const fetchDepartures = async (ID: string) => {
+    await fetch("https://www.mvg.de/api/fahrinfo/departure/" + ID)
       .then((response) => response.json())
       .then((data) => {
         // change 'departureTime' from epoch to remaining time
@@ -39,7 +41,9 @@ function App() {
             // if the departure time is negative, remove it
             departure.departureTime > 0 &&
             // if the product is "BUS" remove it
-            departure.product !== "BUS"
+            departure.product !== "BUS" &&
+            // if the pruoduct is "REGIONAL_BUS" remove it
+            departure.product !== "REGIONAL_BUS"
         );
 
         // if no delay is given, set it to 0
@@ -59,12 +63,12 @@ function App() {
   };
 
   useEffect(() => {
-    fetchDepartures();
+    fetchDepartures(stationID);
   }, []);
 
   return (
     <PullToRefresh
-      onRefresh={fetchDepartures}
+      onRefresh={fetchDepartures.bind(null, stationID)}
       refreshingContent={
         <Triangle
           height={50}
@@ -81,10 +85,33 @@ function App() {
       pullingContent={<></>}
     >
       <div className="App">
-        <Header station={stationName} />
-        {departures.map((departure, i) => (
-          <DepartCard departures={departure} key={i} />
-        ))}
+        <Header
+          station={stationName}
+          selector={showSelector}
+          setSelector={setShowSelector}
+        />
+        {showSelector && (
+          <div className="StationSelector">
+            <StationSelector
+              stationID={stationID}
+              setStationID={setStationID}
+              setStationName={setStationName}
+              fetch={fetchDepartures}
+              setSelector={setShowSelector}
+            />
+          </div>
+        )}
+        <div
+          className="departures"
+          style={showSelector ? { opacity: 0.2 } : { opacity: 1 }}
+          onClick={() => {
+            showSelector && setShowSelector(false);
+          }}
+        >
+          {departures.map((departure, i) => (
+            <DepartCard departures={departure} key={i} />
+          ))}
+        </div>
         <Footer />
       </div>
     </PullToRefresh>
