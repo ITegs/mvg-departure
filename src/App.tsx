@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import PullToRefresh from "react-simple-pull-to-refresh";
+import { Triangle } from "react-loader-spinner";
 import "./App.css";
 import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
@@ -19,8 +21,8 @@ function App() {
 
   const [departures, setDepartures] = useState([]);
 
-  const fetchDepartures = () => {
-    fetch("https://www.mvg.de/api/fahrinfo/departure/" + StationID)
+  const fetchDepartures = async () => {
+    await fetch("https://www.mvg.de/api/fahrinfo/departure/" + StationID)
       .then((response) => response.json())
       .then((data) => {
         // change 'departureTime' from epoch to remaining time
@@ -61,13 +63,31 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header station={stationName} />
-      {departures.map((departure, i) => (
-        <DepartCard departures={departure} key={i} />
-      ))}
-      <Footer />
-    </div>
+    <PullToRefresh
+      onRefresh={fetchDepartures}
+      refreshingContent={
+        <Triangle
+          height={50}
+          width={50}
+          color="#d5573b"
+          wrapperStyle={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "#e8e9f3",
+          }}
+        />
+      }
+      backgroundColor="#e8e9f3"
+      pullingContent={<></>}
+    >
+      <div className="App">
+        <Header station={stationName} />
+        {departures.map((departure, i) => (
+          <DepartCard departures={departure} key={i} />
+        ))}
+        <Footer />
+      </div>
+    </PullToRefresh>
   );
 }
 
