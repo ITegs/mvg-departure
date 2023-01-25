@@ -64,7 +64,7 @@ function App() {
 
   useEffect(() => {
     fetchDepartures(stationID);
-  });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PullToRefresh
@@ -109,7 +109,7 @@ function App() {
           }}
         >
           {departures.map((departure, i) => (
-            <DepartCard key={i} {...departure} />
+            <DepartCard {...departure} />
           ))}
         </div>
         <Footer />

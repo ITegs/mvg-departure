@@ -1,0 +1,77 @@
+.SWrapper {
+  color: var(--text);
+  background-color: var(--panel);
+  padding: 1em;
+}
+
+.SInput {
+  display: flex;
+  border-radius: 20px;
+  border: 1px solid var(--accent);
+}
+
+.SInput input {
+  width: 80%;
+  float: left;
+  padding: 0.5em;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--text);
+  background-color: var(--panel);
+  border-radius: 20px;
+  border: none;
+}
+
+.SWrapper img {
+  width: 20%;
+  float: right;
+  padding: 0.5em;
+}
+
+.SResult {
+  margin-top: 1em;
+  padding: 1em;
+  border-radius: 20px;
+  border: 1px solid var(--accent);
+  color: var(--bg);
+  background-color: var(--text);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SResultName {
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: left;
+}
+
+.SResultProducts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-inline: 1em;
+}
+
+.SResultProduct {
+  font-weight: 600;
+  background-color: var(--panel);
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0.1em;
+}
+
+.SResult img {
+  width: 3em;
+  height: 3em;
+  border-radius: 00.5em 1em 1em 0.5em;
+  border: 2px solid var(--bg);
+}
+
+.SResult img:active {
+  background-color: var(--accent);
+  border: 2px solid var(--accent);
+}

@@ -16,7 +16,9 @@ export default function Header(props: {
         }}
       >
         <img src="train.svg" alt="train" />
-        {props.station}
+        {props.station.length > 15
+          ? props.station.substring(0, 10) + "..."
+          : props.station}
       </h2>
     </div>
   );

@@ -1,4 +1,4 @@
-import {Station} from "../types";
+import { Station } from "../types";
 
 const Stations: Station[] = [
   {
@@ -6,12 +6,12 @@ const Stations: Station[] = [
     name: "Universität",
   },
   {
-    id: "de:09162:48",
-    name: "Nordendstraße",
+    id: "de:09162:1",
+    name: "Karlsplatz (Stachus)",
   },
   {
-    id: "de:09184:460",
-    name: "TUM Campus",
+    id: "de:09162:6",
+    name: "Hauptbahnhof",
   },
 ];
 

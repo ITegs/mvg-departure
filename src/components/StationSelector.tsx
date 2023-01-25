@@ -1,15 +1,23 @@
 import React from "react";
 import { Dna } from "react-loader-spinner";
+import Search from "./Search";
 import Stations from "./StationList";
 import "./StationSelector.css";
 
 export default function StationSelector(props: any) {
   const [loading, setLoading] = React.useState(false);
+  const [isSearch, setIsSearch] = React.useState(false);
 
   return (
     <div className="SSWrapper">
-      <div className="SSTitle">
-        Station wählen
+      <div
+        className="SSTitle"
+        onClick={() => {
+          setIsSearch(!isSearch);
+        }}
+      >
+        <img src="search.svg" alt="search" />
+        Station {isSearch ? "suchen" : "wählen"}
         <Dna
           wrapperStyle={{
             opacity: loading ? "1" : "0",
@@ -18,28 +26,32 @@ export default function StationSelector(props: any) {
         />
       </div>
       <div className="SSStationList">
-        {Stations.map((station: any, i: number) => (
-          <div
-            className="SSStation"
-            key={i}
-            style={
-              station.id === props.stationID
-                ? { backgroundColor: "#777da7" }
-                : {}
-            }
-            onClick={() => {
-              setLoading(true);
-              props.setStationID(station.id);
-              props.fetch(station.id).then(() => {
-                props.setStationName(station.name);
-                props.setSelector(false);
-                setLoading(false);
-              });
-            }}
-          >
-            {station.name}
-          </div>
-        ))}
+        {!isSearch ? (
+          Stations.map((station: any, i: number) => (
+            <div
+              className="SSStation"
+              key={i}
+              style={
+                station.id === props.stationID
+                  ? { backgroundColor: "#777da7" }
+                  : {}
+              }
+              onClick={() => {
+                setLoading(true);
+                props.setStationID(station.id);
+                props.fetch(station.id).then(() => {
+                  props.setStationName(station.name);
+                  props.setSelector(false);
+                  setLoading(false);
+                });
+              }}
+            >
+              {station.name}
+            </div>
+          ))
+        ) : (
+          <Search setSelector={props.setSelector} />
+        )}
       </div>
     </div>
   );
