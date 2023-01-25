@@ -64,7 +64,7 @@ function App() {
 
   useEffect(() => {
     fetchDepartures(stationID);
-  }, []);
+  }, [stationID]);
 
   return (
     <PullToRefresh
