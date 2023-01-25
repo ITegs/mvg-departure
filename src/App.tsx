@@ -64,7 +64,7 @@ function App() {
 
   useEffect(() => {
     fetchDepartures(stationID);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [stationID]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <PullToRefresh
