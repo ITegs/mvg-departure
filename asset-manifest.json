@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "./static/css/main.534b3bb6.css",
+    "main.js": "./static/js/main.717793bf.js",
+    "static/media/JockeyOne-Regular.ttf": "./static/media/JockeyOne-Regular.584844087b26cf82452d.ttf",
+    "index.html": "./index.html",
+    "main.534b3bb6.css.map": "./static/css/main.534b3bb6.css.map",
+    "main.717793bf.js.map": "./static/js/main.717793bf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.534b3bb6.css",
+    "static/js/main.717793bf.js"
+  ]
+}
