@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PullToRefresh from "react-simple-pull-to-refresh";
 import { Triangle } from "react-loader-spinner";
 import "./App.css";
+import { Departure } from "./types";
 import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
 import Footer from "./components/Footer";
@@ -17,18 +18,17 @@ function App() {
     const now = new Date();
     const departure = new Date(epoch);
     const diff = departure.getTime() - now.getTime();
-    const minutes = Math.floor(diff / 1000 / 60);
-    return minutes;
+    return Math.floor(diff / 1000 / 60);
   };
 
-  const [departures, setDepartures] = useState([]);
+  const [departures, setDepartures] = useState<Departure[]>([]);
 
   const fetchDepartures = async (ID: string) => {
     await fetch("https://www.mvg.de/api/fahrinfo/departure/" + ID)
       .then((response) => response.json())
       .then((data) => {
         // change 'departureTime' from epoch to remaining time
-        data.departures.forEach((departure: any) => {
+        data.departures.forEach((departure: Departure) => {
           departure.departureTime = epochToRemainingTime(
             departure.departureTime
           );
@@ -36,25 +36,25 @@ function App() {
 
         const filteredDepartures = data.departures.filter(
           // show only departures in the next 30 minutes
-          (departure: any) =>
-            departure.departureTime < 30 &&
+          (d: Departure) =>
+            d.departureTime < 30 &&
             // if the departure time is negative, remove it
-            departure.departureTime > 0 &&
+            d.departureTime > 0 &&
             // if the product is "BUS" remove it
-            departure.product !== "BUS" &&
+            d.product !== "BUS" &&
             // if the pruoduct is "REGIONAL_BUS" remove it
-            departure.product !== "REGIONAL_BUS"
+            d.product !== "REGIONAL_BUS"
         );
 
         // if no delay is given, set it to 0
-        filteredDepartures.forEach((departure: any) => {
+        filteredDepartures.forEach((departure: Departure) => {
           if (!departure.delay) {
             departure.delay = 0;
           }
         });
 
         // sort by departure time + delay
-        filteredDepartures.sort((a: any, b: any) => {
+        filteredDepartures.sort((a: Departure, b: Departure) => {
           return a.departureTime + a.delay - (b.departureTime + b.delay);
         });
 
@@ -109,7 +109,7 @@ function App() {
           }}
         >
           {departures.map((departure, i) => (
-            <DepartCard departures={departure} key={i} />
+            <DepartCard key={i} {...departure} />
           ))}
         </div>
         <Footer />

@@ -1,19 +1,20 @@
 import React from "react";
 import "./DepartCard.css";
+import { Departure } from "../types";
 
-export default function DepartCard({ departures }: any) {
+export default function DepartCard(dep: Departure) {
   return (
     <div className="DCWrapper">
       <div
         className="DCLine"
-        style={{ backgroundColor: departures.lineBackgroundColor }}
+        style={{ backgroundColor: dep.lineBackgroundColor }}
       >
-        {departures.label}
+        {dep.label}
         {" - "}
-        {departures.destination}
+        {dep.destination}
       </div>
       <div className="DCTime">
-        in <a>{departures.departureTime + departures.delay}</a> min
+        in <b>{dep.departureTime + dep.delay}</b> min
       </div>
     </div>
   );

@@ -1,4 +1,6 @@
-const Stations: any = [
+import {Station} from "../types";
+
+const Stations: Station[] = [
   {
     id: "de:09162:70",
     name: "Universität",
