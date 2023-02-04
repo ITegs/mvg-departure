@@ -1,6 +1,6 @@
 <h1 align=center>mvg-departure</h1>
 <div align=center>
-<img src="assets/mvg-departure.png" width="600" />
+<img src="assets/mvg-departure.jpeg" width="600" />
 </div>
 
 <h2 align=center> <b>"mvg-departure"</b> is a simple web app that shows MVG departure times, with a clean interface, easy access to departure times, destination, and line numbers, and the ability to save frequently used lines and stations.
