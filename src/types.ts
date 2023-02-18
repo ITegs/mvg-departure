@@ -3,12 +3,12 @@ export type Departure = {
   product: "BUS" | "REGIONAL_BUS";
   delay: number;
   lineBackgroundColor: any;
-  label: String;
-  destination: String;
+  label: string;
+  destination: string;
 };
 
 export type Station = {
-  id: String;
-  name: String;
-  products?: String[];
+  id: string;
+  name: string;
+  products?: string[];
 };
