@@ -8,6 +8,13 @@ export default function StationSelector(props: any) {
   const [loading, setLoading] = React.useState(false);
   const [isSearch, setIsSearch] = React.useState(false);
 
+  const removeStation = (id: string) => {
+    let newStations = Stations.filter((s: any) => s.id !== id);
+    localStorage.setItem("stations", JSON.stringify(newStations));
+    Stations.length = 0;
+    Stations.push(...newStations);
+  };
+
   return (
     <div className="SSWrapper">
       <div
@@ -44,6 +51,9 @@ export default function StationSelector(props: any) {
                   props.setSelector(false);
                   setLoading(false);
                 });
+              }}
+              onDoubleClick={() => {
+                removeStation(station.id);
               }}
             >
               {station.name}

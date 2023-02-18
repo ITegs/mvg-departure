@@ -41,6 +41,7 @@ export default function Search({ setSelector }: any) {
 
   const addToFavourites = (station: Station) => {
     Stations.push(station);
+    localStorage.setItem("stations", JSON.stringify(Stations));
     setFade(true);
     setTimeout(() => {
       setSelector(false);

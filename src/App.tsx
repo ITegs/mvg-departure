@@ -7,12 +7,13 @@ import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
 import Footer from "./components/Footer";
 import StationSelector from "./components/StationSelector";
+import Stations from "./components/StationList";
 
 function App() {
   const [showSelector, setShowSelector] = useState(false);
 
-  const [stationID, setStationID] = useState<string>("de:09162:70"); // Universität
-  const [stationName, setStationName] = useState<string>("Universität");
+  const [stationID, setStationID] = useState<string>(Stations[0].id);
+  const [stationName, setStationName] = useState<string>(Stations[0].name);
 
   const epochToRemainingTime = (epoch: number) => {
     const now = new Date();
@@ -33,18 +34,20 @@ function App() {
             departure.departureTime
           );
         });
+        let filteredDepartures = data.departures;
+        if (filteredDepartures.length > 10) {
+          filteredDepartures = data.departures.filter(
+            // show only departures in the next 30 minutes
+            (d: Departure) => d.departureTime < 30
 
-        const filteredDepartures = data.departures.filter(
-          // show only departures in the next 30 minutes
-          (d: Departure) =>
-            d.departureTime < 30 &&
-            // if the departure time is negative, remove it
-            d.departureTime > 0 &&
+            /* // TODO: set own filter for products
             // if the product is "BUS" remove it
             d.product !== "BUS" &&
             // if the pruoduct is "REGIONAL_BUS" remove it
             d.product !== "REGIONAL_BUS"
-        );
+            */
+          );
+        }
 
         // if no delay is given, set it to 0
         filteredDepartures.forEach((departure: Departure) => {
@@ -65,6 +68,14 @@ function App() {
   useEffect(() => {
     fetchDepartures(stationID);
   }, [stationID]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const stations = localStorage.getItem("stations");
+    if (stations) {
+      Stations.length = 0;
+      Stations.push(...JSON.parse(stations));
+    }
+  }, []);
 
   return (
     <PullToRefresh
