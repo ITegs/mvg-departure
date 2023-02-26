@@ -4,7 +4,11 @@ import { Station } from "../types";
 import "./Search.css";
 import Stations from "./StationList";
 
-export default function Search({ setSelector }: any) {
+export default function Search({
+  setSelector,
+  setStationID,
+  setStationName,
+}: any) {
   const [search, setSearch] = React.useState("");
   const [results, setResults] = React.useState<Station[]>();
   const [fade, setFade] = React.useState(false);
@@ -37,6 +41,15 @@ export default function Search({ setSelector }: any) {
         setResults(stations);
       })
       .catch((err) => console.log(err));
+  };
+
+  const selectStation = (station: Station) => {
+    setStationID(station.id);
+    setStationName(station.name);
+    setFade(true);
+    setTimeout(() => {
+      setSelector(false);
+    }, 500);
   };
 
   const addToFavourites = (station: Station) => {
@@ -82,7 +95,11 @@ export default function Search({ setSelector }: any) {
         <MagnifyingGlass />
       ) : (
         results.map((result, i) => (
-          <div className="SResult" key={i}>
+          <div
+            className="SResult"
+            key={i}
+            onClick={() => selectStation(result)}
+          >
             <div className="SResultName">
               {result.name.length > 25
                 ? result.name.substring(0, 25) + "..."

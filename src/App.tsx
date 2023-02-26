@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PullToRefresh from "react-simple-pull-to-refresh";
 import { Triangle } from "react-loader-spinner";
 import "./App.css";
-import { Departure } from "./types";
+import { Departure, Product } from "./types";
 import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
 import Footer from "./components/Footer";
@@ -35,19 +35,18 @@ function App() {
           );
         });
         let filteredDepartures = data.departures;
-        if (filteredDepartures.length > 10) {
-          filteredDepartures = data.departures.filter(
-            // show only departures in the next 30 minutes
-            (d: Departure) => d.departureTime < 30
 
-            /* // TODO: set own filter for products
+        filteredDepartures = data.departures.filter(
+          // show only departures in the next 30 minutes
+          (d: Departure) => d.departureTime < 100
+
+          /* // TODO: set own filter for products
             // if the product is "BUS" remove it
             d.product !== "BUS" &&
             // if the pruoduct is "REGIONAL_BUS" remove it
             d.product !== "REGIONAL_BUS"
             */
-          );
-        }
+        );
 
         // if no delay is given, set it to 0
         filteredDepartures.forEach((departure: Departure) => {

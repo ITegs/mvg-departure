@@ -60,7 +60,11 @@ export default function StationSelector(props: any) {
             </div>
           ))
         ) : (
-          <Search setSelector={props.setSelector} />
+          <Search
+            setSelector={props.setSelector}
+            setStationID={props.setStationID}
+            setStationName={props.setStationName}
+          />
         )}
       </div>
     </div>
