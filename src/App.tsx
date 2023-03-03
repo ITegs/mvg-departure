@@ -43,7 +43,11 @@ function App() {
 
         Stations.forEach((station) => {
           if (station.id === ID) {
-            // filter departures by products
+            // if no products are given, show all
+            if (station.products.length === 0) {
+              return;
+            }
+            // else filter departures by products
             filteredDepartures = filteredDepartures.filter((d: Departure) =>
               station.products.includes(d.product)
             );
