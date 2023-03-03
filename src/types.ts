@@ -1,6 +1,6 @@
 export type Departure = {
   departureTime: number;
-  product: "BUS" | "REGIONAL_BUS";
+  product: Product;
   delay: number;
   lineBackgroundColor: any;
   label: string;
@@ -10,5 +10,13 @@ export type Departure = {
 export type Station = {
   id: string;
   name: string;
-  products?: string[];
+  products: Product[];
 };
+
+export enum Product {
+  BUS = "BUS",
+  REGIONAL_BUS = "REGIONAL_BUS",
+  SBAHN = "SBAHN",
+  UBAHN = "UBAHN",
+  TRAM = "TRAM",
+}
