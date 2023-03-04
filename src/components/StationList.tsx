@@ -1,25 +1,25 @@
-import { Station } from "../types";
+import { Product, Station } from "../types";
 
 const Stations: Station[] = [
   {
     id: "de:09162:70",
     name: "Universität",
-    products: [],
+    products: [Product.UBAHN, Product.BUS],
   },
   {
     id: "de:09162:1",
     name: "Karlsplatz (Stachus)",
-    products: [],
+    products: [Product.BUS, Product.TRAM, Product.UBAHN, Product.SBAHN],
   },
   {
     id: "de:09162:6",
     name: "Hauptbahnhof",
-    products: [],
+    products: [Product.TRAM, Product.UBAHN, Product.SBAHN],
   },
   {
     id: "de:09184:460",
     name: "TUM Garching",
-    products: [],
+    products: [Product.BUS, Product.UBAHN],
   },
 ];
 

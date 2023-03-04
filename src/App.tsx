@@ -97,12 +97,15 @@ function App() {
           }}
         />
       }
+      resistance={5}
       backgroundColor="#e8e9f3"
       pullingContent={<></>}
     >
       <div className="App">
         <Header
           station={stationName}
+          stationID={stationID}
+          fetch={fetchDepartures}
           selector={showSelector}
           setSelector={setShowSelector}
         />
