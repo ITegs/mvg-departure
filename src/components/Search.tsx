@@ -22,8 +22,6 @@ export default function Search({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         let stations: Station[] = [];
         for (let i = 0; i < 3; i++) {
           if (data.locations[i] == null) break;
