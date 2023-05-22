@@ -5,9 +5,7 @@
 
 ### **"mvg-departure"** is a simple web app that shows MVG departure times, with a clean interface, easy access to departure times, destination, and line numbers, and the ability to save frequently used lines and stations
 
-<br>
-
-### Optimized for mobile devices and accessible from any web browser
+#### Optimized for mobile devices and accessible from any web browser
 
 ## Technologies & Api's
 
