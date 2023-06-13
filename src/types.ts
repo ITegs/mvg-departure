@@ -1,10 +1,22 @@
 export type Departure = {
-  departureTime: number;
-  product: Product;
-  delay: number;
-  lineBackgroundColor: any;
-  label: string;
-  destination: string;
+  line: Line;
+  direction: string;
+  station: Station;
+  track: string;
+  departureDate: string; // yyyymmdd
+  departurePlanned: string; // hh:mm
+  departureLive: string; // hh:mm
+  inTime: boolean;
+  notifications: Notification[];
+  remaining: number;
+};
+
+export type Line = {
+  number: string;
+  symbol: string;
+  direction: string;
+  stateless: string;
+  name: Product;
 };
 
 export type Station = {
@@ -14,9 +26,9 @@ export type Station = {
 };
 
 export enum Product {
-  BUS = "BUS",
+  BUS = "Bus",
   REGIONAL_BUS = "REGIONAL_BUS",
   SBAHN = "SBAHN",
-  UBAHN = "UBAHN",
+  UBAHN = "U-Bahn",
   TRAM = "TRAM",
 }
