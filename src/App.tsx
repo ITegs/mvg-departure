@@ -25,7 +25,13 @@ function App() {
   const [departures, setDepartures] = useState<Departure[]>([]);
 
   const fetchDepartures = async (ID: string) => {
-    await fetch("https://www.mvg.de/api/fahrinfo/departure/" + ID)
+    await fetch(
+      "https://www.mvv-muenchen.de/?eID=departuresFinder&action=get_departures&stop_id=" +
+        ID +
+        "&requested_timestamp=" +
+        Math.floor(Date.now() / 1000) +
+        "&lines"
+    )
       .then((response) => response.json())
       .then((data) => {
         // change 'departureTime' from epoch to remaining time
