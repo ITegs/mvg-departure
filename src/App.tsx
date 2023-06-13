@@ -34,17 +34,32 @@ function App() {
     )
       .then((response) => response.json())
       .then((data) => {
-        // change 'departureTime' from epoch to remaining time
+        // change 'departureLive' & 'departureDate' to epoch and calculate remaining time
         data.departures.forEach((departure: Departure) => {
-          departure.departureTime = epochToRemainingTime(
-            departure.departureTime
-          );
+          let dateY = departure.departureDate.slice(0, 4);
+          let dateM = departure.departureDate.slice(4, 6);
+          let dateD = departure.departureDate.slice(6, 8);
+          let timeH = departure.departureLive.slice(0, 2);
+          let timeM = departure.departureLive.slice(3, 5);
+          let dateString =
+            dateY +
+            "-" +
+            dateM +
+            "-" +
+            dateD +
+            "T" +
+            timeH +
+            ":" +
+            timeM +
+            ":00";
+          let epoch = new Date(dateString).getTime();
+          departure.remaining = epochToRemainingTime(epoch);
         });
         let filteredDepartures = data.departures;
 
         filteredDepartures = data.departures.filter(
           // show only departures in the next 30 minutes
-          (d: Departure) => d.departureTime < 100
+          (d: Departure) => d.remaining < 100
         );
 
         Stations.forEach((station) => {
@@ -55,21 +70,14 @@ function App() {
             }
             // else filter departures by products
             filteredDepartures = filteredDepartures.filter((d: Departure) =>
-              station.products.includes(d.product)
+              station.products.includes(d.line.name)
             );
-          }
-        });
-
-        // if no delay is given, set it to 0
-        filteredDepartures.forEach((departure: Departure) => {
-          if (!departure.delay) {
-            departure.delay = 0;
           }
         });
 
         // sort by departure time + delay
         filteredDepartures.sort((a: Departure, b: Departure) => {
-          return a.departureTime + a.delay - (b.departureTime + b.delay);
+          return a.remaining - b.remaining;
         });
 
         setDepartures(filteredDepartures);
