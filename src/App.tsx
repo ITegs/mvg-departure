@@ -8,6 +8,7 @@ import DepartCard from "./components/DepartCard";
 import Footer from "./components/Footer";
 import StationSelector from "./components/StationSelector";
 import Stations from "./components/StationList";
+import Banner from "./components/Banner";
 
 function App() {
   const [showSelector, setShowSelector] = useState(false);
@@ -134,6 +135,10 @@ function App() {
             />
           </div>
         )}
+        <Banner
+          headline="Aufgrund von API-Änderungen ist die App derzeit nicht verfügbar."
+          sub="Wir arbeiten an einer Lösung."
+        />
         <div
           className="departures"
           style={showSelector ? { opacity: 0.2 } : { opacity: 1 }}
