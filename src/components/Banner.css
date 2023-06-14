@@ -1,0 +1,24 @@
+.BannerContainer {
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  border-radius: 1em;
+  padding: 1.5em;
+  margin: 1em;
+}
+
+.BannerContainer h1 {
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  color: var(--panel);
+}
+
+.BannerContainer h2 {
+  font-size: 0.8em;
+  text-align: center;
+  color: var(--panel);
+}
