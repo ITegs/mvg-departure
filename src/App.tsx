@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
 import Footer from "./components/Footer";
 import StationSelector from "./components/StationSelector";
-import Stations from "./components/StationList";
+import Stations, { VERSION } from "./components/data";
 import Banner from "./components/Banner";
 
 function App() {
@@ -91,10 +91,12 @@ function App() {
 
   useEffect(() => {
     const stations = localStorage.getItem("stations");
-    if (stations) {
+    const version = localStorage.getItem("version");
+    if (stations && version === VERSION) {
       Stations.length = 0;
       Stations.push(...JSON.parse(stations));
     }
+    localStorage.setItem("version", VERSION);
   }, []);
 
   return (
