@@ -1,7 +1,7 @@
 import React from "react";
 import { Product } from "../types";
 import "./Header.css";
-import Stations from "./StationList";
+import Stations from "./data";
 
 export default function Header(props: {
   station: string;

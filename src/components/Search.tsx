@@ -2,7 +2,7 @@ import React from "react";
 import { MagnifyingGlass } from "react-loader-spinner";
 import { Station } from "../types";
 import "./Search.css";
-import Stations from "./StationList";
+import Stations from "./data";
 
 export default function Search({
   setSelector,
