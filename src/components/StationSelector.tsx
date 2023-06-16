@@ -1,7 +1,7 @@
 import React from "react";
 import { Dna } from "react-loader-spinner";
 import Search from "./Search";
-import Stations from "./StationList";
+import Stations from "./data";
 import "./StationSelector.css";
 
 export default function StationSelector(props: any) {
