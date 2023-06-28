@@ -14,7 +14,7 @@ export default function Search({
   const [fade, setFade] = React.useState(false);
 
   const searchStation = (search: string) => {
-    fetch(`https://www.mvg.de/api/fahrinfo/location/queryWeb?q=${search}`, {
+    fetch(`https://www.mvg.de/api/fib/v2/location?query=${search}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -24,15 +24,16 @@ export default function Search({
       .then((data) => {
         let stations: Station[] = [];
         for (let i = 0; i < 3; i++) {
-          if (data.locations[i] == null) break;
+          console.log(data[i]);
+          if (data[i] == null) break;
           else if (
-            stations.find((s) => s.name === data.locations[i].name) == null &&
-            data.locations[i].products != null
+            stations.find((s) => s.name === data[i].name) == null &&
+            data[i].transportTypes != null
           )
             stations.push({
-              name: data.locations[i].name,
-              id: data.locations[i].id,
-              products: data.locations[i].products,
+              name: data[i].name,
+              globalId: data[i].id,
+              transportTypes: data[i].products,
             });
         }
 
@@ -42,7 +43,7 @@ export default function Search({
   };
 
   const selectStation = (station: Station) => {
-    setStationID(station.id);
+    setStationID(station.globalId);
     setStationName(station.name);
     setFade(true);
     setTimeout(() => {
@@ -104,7 +105,7 @@ export default function Search({
                 : result.name}
             </div>
             <div className="SResultProducts">
-              {result.products?.map((p, i) => (
+              {result.transportTypes?.map((p, i) => (
                 <div className="SResultProduct" key={i}>
                   {p.charAt(0).toUpperCase()}
                 </div>
