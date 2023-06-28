@@ -2,24 +2,24 @@ import { Product, Station } from "../types";
 
 const Stations: Station[] = [
   {
-    id: "de:09162:70",
+    globalId: "de:09162:70",
     name: "Universität",
-    products: [Product.UBAHN, Product.BUS],
+    transportTypes: [Product.UBAHN, Product.BUS],
   },
   {
-    id: "de:09162:1",
+    globalId: "de:09162:1",
     name: "Karlsplatz (Stachus)",
-    products: [Product.BUS, Product.TRAM, Product.UBAHN, Product.SBAHN],
+    transportTypes: [Product.BUS, Product.TRAM, Product.UBAHN, Product.SBAHN],
   },
   {
-    id: "de:09162:6",
+    globalId: "de:09162:6",
     name: "Hauptbahnhof",
-    products: [Product.TRAM, Product.UBAHN, Product.SBAHN],
+    transportTypes: [Product.TRAM, Product.UBAHN, Product.SBAHN],
   },
   {
-    id: "de:09184:460",
+    globalId: "de:09184:460",
     name: "TUM Garching",
-    products: [Product.BUS, Product.UBAHN],
+    transportTypes: [Product.BUS, Product.UBAHN],
   },
 ];
 
