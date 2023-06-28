@@ -20,9 +20,18 @@ export type Line = {
 };
 
 export type Station = {
-  id: string;
+  type?: string;
+  latitude?: number;
+  longitude?: number;
+  place?: string;
   name: string;
-  products: Product[];
+  globalId: string;
+  divaId?: number;
+  hasZoomData?: boolean;
+  transportTypes: Product[];
+  surroundingPlanLink?: string;
+  aliases?: string;
+  tariffZones?: string;
 };
 
 export enum Product {

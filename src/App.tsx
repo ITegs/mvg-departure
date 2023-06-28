@@ -13,7 +13,7 @@ import Banner from "./components/Banner";
 function App() {
   const [showSelector, setShowSelector] = useState(false);
 
-  const [stationID, setStationID] = useState<string>(Stations[0].id);
+  const [stationID, setStationID] = useState<string>(Stations[0].globalId);
   const [stationName, setStationName] = useState<string>(Stations[0].name);
 
   const epochToRemainingTime = (epoch: number) => {
@@ -64,14 +64,14 @@ function App() {
         );
 
         Stations.forEach((station) => {
-          if (station.id === ID) {
+          if (station.globalId === ID) {
             // if no products are given, show all
-            if (station.products.length === 0) {
+            if (station.transportTypes.length === 0) {
               return;
             }
             // else filter departures by products
             filteredDepartures = filteredDepartures.filter((d: Departure) =>
-              station.products.includes(d.line.name)
+              station.transportTypes.includes(d.line.name)
             );
           }
         });

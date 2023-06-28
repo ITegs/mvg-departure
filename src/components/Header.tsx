@@ -14,11 +14,14 @@ export default function Header(props: {
 
   const addProduct = (product: Product) => {
     Stations.forEach((station) => {
-      if (station.id === props.stationID) {
-        if (station.products.includes(product)) {
-          station.products.splice(station.products.indexOf(product), 1);
+      if (station.globalId === props.stationID) {
+        if (station.transportTypes.includes(product)) {
+          station.transportTypes.splice(
+            station.transportTypes.indexOf(product),
+            1
+          );
         }
-        if (station.products.length === 0) {
+        if (station.transportTypes.length === 0) {
           resetProducts();
         }
       }
@@ -29,11 +32,13 @@ export default function Header(props: {
 
   const resetProducts = () => {
     Stations.forEach((station) => {
-      if (station.id === props.stationID) {
-        fetch("https://www.mvg.de/api/fahrinfo/location/query?q=" + station.id)
+      if (station.globalId === props.stationID) {
+        fetch(
+          "https://www.mvg.de/api/fahrinfo/location/query?q=" + station.globalId
+        )
           .then((response) => response.json())
           .then((data) => {
-            station.products = data.locations[0].products;
+            station.transportTypes = data.locations[0].products;
           })
           .then(() => {
             localStorage.setItem("stations", JSON.stringify(Stations));
@@ -66,12 +71,12 @@ export default function Header(props: {
       >
         {Stations.map((station, i) => (
           <div key={i}>
-            {props.stationID === station.id && (
+            {props.stationID === station.globalId && (
               <div className="headerProducts">
                 <p>Filter:</p>
                 <div className="headerProductList">
-                  {station.products.length !== 0 ? (
-                    station.products.map((product, i) => (
+                  {station.transportTypes.length !== 0 ? (
+                    station.transportTypes.map((product, i) => (
                       <div
                         className="headerFilterProduct"
                         key={i}
