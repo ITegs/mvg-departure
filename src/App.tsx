@@ -138,7 +138,7 @@ function App() {
           </div>
         )}
         <Banner
-          headline="Aufgrund von API-Änderungen ist die App derzeit nicht verfügbar."
+          headline="Aufgrund von API-Änderungen funktionierten einige Funktionen nicht richtig."
           sub="Wir arbeiten an einer Lösung."
         />
         <div
