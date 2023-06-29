@@ -149,7 +149,7 @@ function App() {
           }}
         >
           {departures.map((departure, i) => (
-            <DepartCard {...departure} />
+            <DepartCard {...departure} key={i} />
           ))}
         </div>
         <Footer />
