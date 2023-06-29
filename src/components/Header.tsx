@@ -65,7 +65,7 @@ export default function Header(props: {
             : props.station}
         </h2>
       </div>
-      <div
+      {/* <div
         className="headerFilter"
         onTouchStart={(document.body.style.overflowX = "hidden" as any)}
       >
@@ -102,7 +102,7 @@ export default function Header(props: {
             )}
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
