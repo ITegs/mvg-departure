@@ -3,13 +3,14 @@ import { Dna } from "react-loader-spinner";
 import Search from "./Search";
 import Stations from "./data";
 import "./StationSelector.css";
+import { Station } from "../types";
 
 export default function StationSelector(props: any) {
   const [loading, setLoading] = React.useState(false);
   const [isSearch, setIsSearch] = React.useState(false);
 
   const removeStation = (id: string) => {
-    let newStations = Stations.filter((s: any) => s.id !== id);
+    let newStations = Stations.filter((s: Station) => s.globalId !== id);
     localStorage.setItem("stations", JSON.stringify(newStations));
     Stations.length = 0;
     Stations.push(...newStations);
@@ -34,26 +35,26 @@ export default function StationSelector(props: any) {
       </div>
       <div className="SSStationList">
         {!isSearch ? (
-          Stations.map((station: any, i: number) => (
+          Stations.map((station: Station, i: number) => (
             <div
               className="SSStation"
               key={i}
               style={
-                station.id === props.stationID
+                station.globalId === props.stationID
                   ? { backgroundColor: "#777da7" }
                   : {}
               }
               onClick={() => {
                 setLoading(true);
-                props.setStationID(station.id);
-                props.fetch(station.id).then(() => {
+                props.setStationID(station.globalId);
+                props.fetch(station.globalId).then(() => {
                   props.setStationName(station.name);
                   props.setSelector(false);
                   setLoading(false);
                 });
               }}
               onDoubleClick={() => {
-                removeStation(station.id);
+                removeStation(station.globalId);
               }}
             >
               {station.name}
