@@ -24,7 +24,6 @@ export default function Search({
       .then((data) => {
         let stations: Station[] = [];
         for (let i = 0; i < 3; i++) {
-          console.log(data[i]);
           if (data[i] == null) break;
           else if (
             stations.find((s) => s.name === data[i].name) == null &&
