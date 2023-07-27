@@ -24,6 +24,7 @@ function App() {
   };
 
   const [departures, setDepartures] = useState<Departure[]>([]);
+  const [localStorageSync, setLocalStorageSync] = useState<boolean>(false);
 
   const fetchDepartures = async (ID: string) => {
     await fetch(
@@ -93,10 +94,12 @@ function App() {
     const stations = localStorage.getItem("stations");
     const version = localStorage.getItem("version");
     if (stations && version === VERSION) {
+      setLocalStorageSync(true);
       Stations.length = 0;
       Stations.push(...JSON.parse(stations));
+      localStorage.setItem("version", VERSION);
     }
-    localStorage.setItem("version", VERSION);
+    setTimeout(() => setLocalStorageSync(false), 5000);
   }, []);
 
   return (
@@ -138,8 +141,16 @@ function App() {
           </div>
         )}
         <Banner
+          show={localStorageSync}
+          headline="Es wurde eine Konfiguration gefunden"
+          sub="Ihre gespeicherten Stationen werden geladen"
+          type="green"
+        />
+        <Banner
+          show={true}
           headline="Aufgrund von API-Änderungen funktionierten einige Funktionen nicht richtig."
           sub="Wir arbeiten an einer Lösung."
+          type="red"
         />
         <div
           className="departures"
@@ -149,7 +160,7 @@ function App() {
           }}
         >
           {departures.map((departure, i) => (
-            <DepartCard {...departure} key={i} />
+            <DepartCard key={i} dep={departure} i={i} />
           ))}
         </div>
         <Footer />
