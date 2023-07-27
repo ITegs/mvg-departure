@@ -64,18 +64,18 @@ function App() {
           (d: Departure) => d.remaining < 100
         );
 
-        Stations.forEach((station) => {
-          if (station.globalId === ID) {
-            // if no products are given, show all
-            if (station.transportTypes.length === 0) {
-              return;
-            }
-            // else filter departures by products
-            filteredDepartures = filteredDepartures.filter((d: Departure) =>
-              station.transportTypes.includes(d.line.name)
-            );
-          }
-        });
+        // Stations.forEach((station) => {
+        //   if (station.globalId === ID) {
+        //     // if no products are given, show all
+        //     if (station.transportTypes.length === 0) {
+        //       return;
+        //     }
+        //     // else filter departures by products
+        //     filteredDepartures = filteredDepartures.filter((d: Departure) =>
+        //       station.transportTypes.includes(d.line.name)
+        //     );
+        //   }
+        // });
 
         // sort by departure time + delay
         filteredDepartures.sort((a: Departure, b: Departure) => {
@@ -97,8 +97,10 @@ function App() {
       setLocalStorageSync(true);
       Stations.length = 0;
       Stations.push(...JSON.parse(stations));
-      localStorage.setItem("version", VERSION);
+    } else {
+      localStorage.removeItem("stations");
     }
+    localStorage.setItem("version", VERSION);
     setTimeout(() => setLocalStorageSync(false), 5000);
   }, []);
 
