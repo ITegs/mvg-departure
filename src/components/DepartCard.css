@@ -1,4 +1,5 @@
 .DCWrapper {
+  animation: fadeInDC 1s ease-in-out;
   background-color: var(--panel);
   margin-top: 1em;
   height: 18vh;
@@ -33,4 +34,15 @@
 .DCTime b {
   color: var(--accent);
   font-size: 1.5em;
+}
+
+@keyframes fadeInDC {
+  0% {
+    opacity: 0;
+    transform: translateY(-5vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

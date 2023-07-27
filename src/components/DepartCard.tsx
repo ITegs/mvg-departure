@@ -2,16 +2,16 @@ import React from "react";
 import "./DepartCard.css";
 import { Departure } from "../types";
 
-export default function DepartCard(dep: Departure) {
+export default function DepartCard(props: { dep: Departure; i: number }) {
   return (
-    <div className="DCWrapper">
+    <div className="DCWrapper" style={{ animationDelay: props.i * 0.1 + "s" }}>
       <div className="DCLine" style={{ backgroundColor: "black" }}>
-        {dep.line.number}
+        {props.dep.line.number}
         {" - "}
-        {dep.line.direction}
+        {props.dep.line.direction}
       </div>
       <div className="DCTime">
-        in <b>{dep.remaining}</b> min
+        in <b>{props.dep.remaining}</b> min
       </div>
     </div>
   );
