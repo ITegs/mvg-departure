@@ -30,9 +30,9 @@ export default function Search({
             data[i].transportTypes != null
           )
             stations.push({
+              globalId: data[i].globalId,
               name: data[i].name,
-              globalId: data[i].id,
-              transportTypes: data[i].products,
+              transportTypes: data[i].transportTypes,
             });
         }
 
