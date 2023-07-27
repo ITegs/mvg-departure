@@ -25,4 +25,4 @@ const Stations: Station[] = [
 
 export default Stations;
 
-export const VERSION = "1.0";
+export const VERSION = "1.1";
