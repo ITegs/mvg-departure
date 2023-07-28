@@ -12,6 +12,8 @@ import Banner from "./components/Banner";
 
 function App() {
   const [showSelector, setShowSelector] = useState(false);
+  const [localStorageSync, setLocalStorageSync] = useState<boolean>(false);
+  const [showBanner, setShowBanner] = useState<boolean>(true);
 
   const [stationID, setStationID] = useState<string>(Stations[0].globalId);
   const [stationName, setStationName] = useState<string>(Stations[0].name);
@@ -24,7 +26,6 @@ function App() {
   };
 
   const [departures, setDepartures] = useState<Departure[]>([]);
-  const [localStorageSync, setLocalStorageSync] = useState<boolean>(false);
 
   const fetchDepartures = async (ID: string) => {
     await fetch(
@@ -88,6 +89,7 @@ function App() {
 
   useEffect(() => {
     fetchDepartures(stationID);
+    setTimeout(() => setShowBanner(false), 6000);
   }, [stationID]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -106,7 +108,7 @@ function App() {
 
   return (
     <PullToRefresh
-      onRefresh={fetchDepartures.bind(null, stationID)}
+      onRefresh={() => fetchDepartures(stationID)}
       refreshingContent={
         <Triangle
           height={50}
@@ -149,7 +151,7 @@ function App() {
           type="green"
         />
         <Banner
-          show={true}
+          show={showBanner}
           headline="Aufgrund von API-Änderungen funktionierten einige Funktionen nicht richtig."
           sub="Wir arbeiten an einer Lösung."
           type="red"
@@ -165,7 +167,7 @@ function App() {
             <DepartCard key={i} dep={departure} i={i} />
           ))}
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </PullToRefresh>
   );
