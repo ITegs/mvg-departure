@@ -5,7 +5,7 @@ import "./App.css";
 import { Departure } from "./types";
 import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import StationSelector from "./components/StationSelector";
 import Stations, { VERSION } from "./components/data";
 import Banner from "./components/Banner";
