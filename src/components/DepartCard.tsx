@@ -4,7 +4,10 @@ import { Departure } from "../types";
 
 export default function DepartCard(props: { dep: Departure; i: number }) {
   return (
-    <div className="DCWrapper" style={{ animationDelay: props.i * 0.1 + "s" }}>
+    <div
+      className="DCWrapper"
+      style={{ animationDelay: props.i * 0.15 + 0.8 + "s" }}
+    >
       <div className="DCLine" style={{ backgroundColor: "black" }}>
         {props.dep.line.number}
         {" - "}
