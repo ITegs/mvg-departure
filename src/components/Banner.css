@@ -1,5 +1,6 @@
 .BannerContainer {
-  animation: fadeInBA 0.5s ease-in-out;
+  opacity: 0;
+  animation: fadeInBA 0.5s ease-in-out 1s forwards;
   height: 10vh;
   display: flex;
   flex-direction: column;
@@ -45,7 +46,7 @@
 @keyframes fadeInBA {
   0% {
     opacity: 0;
-    transform: translateY(-10vh);
+    transform: translateY(-5vh);
   }
   100% {
     opacity: 1;
