@@ -1,5 +1,6 @@
 .DCWrapper {
-  animation: fadeInDC 1s ease-in-out;
+  opacity: 0;
+  animation: fadeInDC 1s ease-in-out forwards;
   background-color: var(--panel);
   margin-top: 1em;
   height: 18vh;
