@@ -8,7 +8,7 @@ export default function DepartCard(props: { dep: Departure; i: number }) {
       className="DCWrapper"
       style={{ animationDelay: props.i * 0.15 + 0.8 + "s" }}
     >
-      <div className="DCLine" style={{ backgroundColor: "black" }}>
+      <div className="DCLine" style={{ backgroundColor: props.dep.color }}>
         {props.dep.line.number}
         {" - "}
         {props.dep.line.direction}

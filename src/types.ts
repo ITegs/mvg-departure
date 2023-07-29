@@ -9,6 +9,7 @@ export type Departure = {
   inTime: boolean;
   notifications: Notification[];
   remaining: number;
+  color: LineColor;
 };
 
 export type Line = {
@@ -36,8 +37,18 @@ export type Station = {
 
 export enum Product {
   BUS = "Bus",
-  REGIONAL_BUS = "REGIONAL_BUS",
-  SBAHN = "SBAHN",
+  REGIONAL_BUS = "MVV-Regionalbus",
+  EXPRESS_BUS = "ExpressBus",
+  SBAHN = "S-Bahn",
   UBAHN = "U-Bahn",
-  TRAM = "TRAM",
+  TRAM = "Tram",
+}
+
+export enum LineColor {
+  "Bus" = "#01586b",
+  "MVV-Regionalbus" = "#01586b",
+  "ExpressBus" = "#01586b",
+  "S-Bahn" = "#519955",
+  "U-Bahn" = "#016db4",
+  "Tram" = "#ef1923",
 }
