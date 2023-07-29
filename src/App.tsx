@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PullToRefresh from "react-simple-pull-to-refresh";
 import { Triangle } from "react-loader-spinner";
 import "./App.css";
-import { Departure } from "./types";
+import { Departure, LineColor } from "./types";
 import Header from "./components/Header";
 import DepartCard from "./components/DepartCard";
 // import Footer from "./components/Footer";
@@ -57,6 +57,7 @@ function App() {
             ":00";
           let epoch = new Date(dateString).getTime();
           departure.remaining = epochToRemainingTime(epoch);
+          departure.color = LineColor[departure.line.name];
         });
         let filteredDepartures = data.departures;
 
