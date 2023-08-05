@@ -26,6 +26,7 @@
   color: var(--accent);
   text-align: center;
   line-height: 6vh;
+  cursor: pointer;
 }
 
 .headerStation img {
