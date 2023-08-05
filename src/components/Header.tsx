@@ -55,7 +55,7 @@ export default function Header(props: {
         <h1 className="headerTitle">MVG Departure</h1>
         <h2
           className="headerStation"
-          onTouchEnd={() => {
+          onClick={() => {
             props.setSelector(!props.selector);
           }}
         >

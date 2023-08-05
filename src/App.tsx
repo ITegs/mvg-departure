@@ -153,7 +153,7 @@ function App() {
         />
         <Banner
           show={showBanner}
-          headline="Aufgrund von API-Änderungen funktionierten einige Funktionen nicht richtig."
+          headline="Aufgrund von API-Änderungen funktionieren einige Funktionen aktuell nicht korrekt."
           sub="Wir arbeiten an einer Lösung."
           type="red"
         />

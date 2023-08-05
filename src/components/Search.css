@@ -11,7 +11,7 @@
 }
 
 .SInput input {
-  width: 80%;
+  width: 100%;
   float: left;
   padding: 0.5em;
   font-size: 1.2em;
@@ -22,10 +22,15 @@
   border: none;
 }
 
+.SInput input:focus {
+  outline: none;
+}
+
 .SWrapper img {
-  width: 20%;
+  width: 4em;
   float: right;
   padding: 0.5em;
+  cursor: pointer;
 }
 
 .SResult {
