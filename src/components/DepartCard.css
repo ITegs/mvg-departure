@@ -14,6 +14,10 @@
   padding: 1em;
 }
 
+.DCNowOutlined {
+  border: 2px solid var(--accent);
+}
+
 .DCLine {
   display: flex;
   justify-content: center;
@@ -37,6 +41,28 @@
   font-size: 1.5em;
 }
 
+.DCNow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1em 0.5em 0.1em 0.1em;
+  border-radius: 0.5em;
+  font-size: 1.5em;
+  font-weight: 800;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.DCDot {
+  height: 0.5em;
+  width: 0.5em;
+  border-radius: 50%;
+  background-color: red;
+  margin-inline: 0.5em;
+  animation: blink 2s ease-in-out infinite;
+}
+
 @keyframes fadeInDC {
   0% {
     opacity: 0;
@@ -45,5 +71,17 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
